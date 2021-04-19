@@ -3,3 +3,61 @@ body
     padding-top:50px;
     background: rgb(191, 191, 201);
 }
+
+.top-left-menu{
+    background: #444;
+    border: 1px solid black;
+}
+
+.top-left-menu>select{
+    width:100%;
+    font-size: 1.5em;
+    margin:0;
+}
+
+.top-left-menu>h3{
+    text-align: center;
+    display: block;
+    margin: 5px;
+    background-color: #fff;
+    color:#000;
+}
+
+.pages{
+    margin-top:10px;
+}
+
+.pages>ul
+{
+    padding:0;
+    list-style: none;
+    font-size:1.5em;
+}
+.pages>ul>li{
+    border: 1px solid black;
+    text-align: center;
+    line-height: 2em;
+    background-color: #f3f3f3;
+}
+
+.main-table>table
+{
+    
+    background-color: #f3f3f3;
+}
+
+.main-table>button{
+    margin-top:5px;
+}
+
+.edit-table>form>table
+{
+    margin-top:10px;
+    background-color: #fff;
+    font-size: 1.3em;
+}
+
+.edit-table>form>button
+{
+    margin-bottom:20px;
+}

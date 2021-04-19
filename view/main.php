@@ -15,7 +15,8 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 left-menu">
+            <div class="top-left-menu">
                 <select onChange="changeRole(this)">
                     <option value="0"> Выберите роль</option>
                     <? foreach ($this->data['roles'] as $role):?>
@@ -25,8 +26,9 @@
                     </option>
                     <?endforeach?>
                 </select>
+                <h3>Меню</h3>
+            </div>
                 <div class="pages">
-                    <h3>Menu</h3>
                     <ul>
                         <?if($this->data['accessPages']) foreach ($this->data['accessPages'] as $page):?>
                         <li><?= $page['page_name']; ?></li>
@@ -34,14 +36,15 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-9">
-                <table border="1" width="100%">
+            <div class="col-md-9 main-table">
+                <table border="1" width="100%" class="table">
+                    <thead class='thead-dark'>
                     <tr>
-                        <th>Пункт меню</th>
-                        <th>Привязанная роль</th>
-                        <th>Действие</th>
+                        <th scope="col">Пункт меню</th>
+                        <th scope="col">Привязанная роль</th>
+                        <th scope="col">Действие</th>
                     </tr>
-
+                    </thead>
                     <?  if ($_GET['role'] > 0)
                         $role = "&role=".$_GET['role'];
                     else
@@ -61,28 +64,30 @@
                     <?endforeach?>
                 </table>
                 <button class="btn btn-primary" data-toggle="modal" data-target="#ModalMenu">Создать пункт меню</button>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#ModalRole">Создать новую роль</button>
+                <button class="btn btn-primary float-right" data-toggle="modal" data-target="#ModalRole">Создать новую роль</button>
             </div>
         </div>
         <? if ($_GET['pageEdit'] > 0):?>
-        <div class="col-md-12">
+        <div class="col-md-9 offset-md-3 edit-table">
             <form method="POST">
                 <input type='hidden' name="page_id" , value="<?= $_GET['pageEdit'] ?>">
-                <table border="1" width="100%">
+                <table border="1" width="100%" class="table">
+                    <thead class='thead-dark'>
                     <tr>
                         <th>Доступные для ролей</th>
                     </tr>
+                </thead>
                     <?if($this->data['accessRoles']) foreach( $this->data['accessRoles'] as $role):?>
                     <tr>
                         <td><label>
                                 <input type='checkbox' name="roles[]" value="<?= $role['role_id'] ?>" <? if ($role['page']==$_GET['pageEdit']):?> checked
                                 <? endif ?>
-                                ><?= $role['role_name'] ?>
+                                > <?= $role['role_name'] ?>
                             </label></td>
                     </tr>
                     <? endforeach ?>
                 </table>
-                <button type="submit" class="btn btn-primary" name='action' value="editPage">Сохранить</button>
+                <button type="submit" class="btn btn-primary float-right" name='action' value="editPage">Сохранить</button>
             </form>
         </div>
         <? endif ?>
@@ -102,8 +107,10 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        <input type="text" name="name" placeholder="Введите название пункта меню">
-                        <button type="submit" name="action" value="addMenu" class="btn btn-primary">+</button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="name" placeholder="Введите название пункта меню"><div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" name="action" value="addMenu" >+</button></div>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -121,8 +128,10 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST">
-                        <input type="text" name="name" placeholder="Введите название роли">
+                    <div class="input-group">
+                        <input type="text"  class="form-control" name="name" placeholder="Введите название роли">
                         <button type="submit" name="action" value="addRole" class="btn btn-primary">+</button>
+                    </div>
                     </form>
                 </div>
             </div>
