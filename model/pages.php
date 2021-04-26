@@ -1,4 +1,4 @@
-<?
+<?php
 
 class PagesModel extends DataBase{
 
